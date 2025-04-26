@@ -15,22 +15,8 @@ export default function Index() {
     router.replace("/ScientificCalculator");
   };
 
-  const fetchMathFact = async () => {
-    try {
-      const response = await fetch('http://numbersapi.com/random/math?json');
-      const data = await response.json();
-      setMathFact(data.text);
-    } catch (error) {
-      console.error('Error fetching math fact:', error);
-      setMathFact("Couldn't fetch a fact, try again later!");
-    } finally {
-      setLoading(false);
-    }
-  };
+ 
 
-  useEffect(() => {
-    fetchMathFact();
-  }, []);
 
   return (
     <View style={styles.container}>
@@ -46,7 +32,7 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      <MathFactSection loading={loading} mathFact={mathFact} fetchMathFact={fetchMathFact} />
+      <MathFactSection  />
     </View>
   );
 }
@@ -128,3 +114,31 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
 });
+const Quotes = [
+  "Math is the language of the universe.",
+  "Numbers are the building blocks of everything.",
+  "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding.",
+  "Pure mathematics is, in its way, the poetry of logical ideas.",
+  "Mathematics is the music of reason.",
+  "The essence of mathematics is not to make simple things complicated, but to make complicated things simple.",
+  "Mathematics is the art of giving the same name to different things.",
+  "Mathematics is the most beautiful and powerful creation of the human spirit.",
+  "Mathematics is the queen of the sciences.",
+  "Mathematics is the key to understanding the universe.",
+  "Mathematics is the science of patterns.",
+  "Mathematics is the study of numbers, shapes, and patterns.",
+  "Mathematics is the study of relationships.",
+  "Mathematics is the study of change.",
+  "Mathematics is the study of structure.",
+  "Mathematics is the study of space.",
+  "Mathematics is the study of quantity.",
+  "Mathematics is the study of uncertainty.",
+  "Mathematics is the study of data.",
+  "Mathematics is the study of algorithms.",
+  "Mathematics is the study of logic.",
+  "Mathematics is the study of proof.",
+  "Mathematics is the study of reasoning.",
+  "Mathematics is the study of abstraction.",
+  "Mathematics is the study of generalization.",
+  "Mathematics is the study of symmetry.",
+];

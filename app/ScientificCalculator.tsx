@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import Footer from './components/Footer';
 
 export default function ScientificCalculator() {
   const [input, setInput] = useState('');
@@ -34,12 +33,18 @@ export default function ScientificCalculator() {
 
   return (
     <View style={styles.container}>
+      {/* Display */}
       <View style={styles.display}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          horizontal
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
+          showsHorizontalScrollIndicator={false}
+        >
           <Text style={styles.displayText}>{input || '0'}</Text>
         </ScrollView>
       </View>
 
+      {/* Buttons */}
       <View style={styles.buttonsContainer}>
         {scientificButtons.map((row, rowIndex) => (
           <View key={rowIndex} style={styles.row}>
@@ -48,8 +53,8 @@ export default function ScientificCalculator() {
                 key={button}
                 style={[
                   styles.button,
-                  button === '=' ? styles.equalsButton : null,
-                  button === 'C' ? styles.clearButton : null,
+                  button === '=' && styles.equalsButton,
+                  button === 'C' && styles.clearButton,
                 ]}
                 onPress={() => handlePress(button)}
               >
@@ -59,7 +64,8 @@ export default function ScientificCalculator() {
           </View>
         ))}
       </View>
-      
+
+ 
     </View>
   );
 }
@@ -71,13 +77,15 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   display: {
-    flex: 1,
     backgroundColor: "rgba(255,255,255,0.6)",
-    margin: 10,
+    marginHorizontal: 10,
+    marginBottom: 10,
     borderRadius: 20,
-    justifyContent: 'flex-end',
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    minHeight: 80, // 👈 FORCE a minimum height!
+    justifyContent: 'center',
     alignItems: 'flex-end',
-    padding: 20,
     elevation: 5,
   },
   displayText: {
@@ -86,7 +94,7 @@ const styles = StyleSheet.create({
     color: "#ba55d3",
   },
   buttonsContainer: {
-    padding: 10,
+    paddingHorizontal: 10,
   },
   row: {
     flexDirection: 'row',
@@ -96,7 +104,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     height: 70,
-    backgroundColor: "#ffc0cb", // light pink buttons
+    backgroundColor: "#ffc0cb",
     margin: 5,
     borderRadius: 15,
     justifyContent: 'center',
@@ -104,10 +112,10 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   equalsButton: {
-    backgroundColor: "#ba55d3", // dark lavender for '='
+    backgroundColor: "#ba55d3",
   },
   clearButton: {
-    backgroundColor: "#ff69b4", // hot pink for 'C'
+    backgroundColor: "#ff69b4",
   },
   buttonText: {
     fontSize: 20,
